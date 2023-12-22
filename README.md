@@ -1,2 +1,2 @@
-# openapi-client-generator
-OpenAPI client generator
+# registry
+Class Registries for OpenAPI Tools
