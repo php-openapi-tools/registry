@@ -7,14 +7,16 @@ namespace OpenAPITools\Registry;
 use cebe\openapi\spec\Schema as openAPISchema;
 use OpenAPITools\Utils\Utils;
 use RuntimeException;
-use Safe\Exceptions\JsonException;
 
 use function array_key_exists;
 use function count;
-use function Safe\json_encode;
+use function is_string;
+use function json_encode;
 use function spl_object_hash;
+use function str_increment;
 use function strtoupper;
 
+/** @api */
 final class Schema
 {
     /** @var array<string, string> */
@@ -36,6 +38,7 @@ final class Schema
     ) {
     }
 
+    /** @throws JsonException */
     public function addClassName(string $className, openAPISchema $schema): void
     {
         if ($schema->type === 'array') {
@@ -46,9 +49,9 @@ final class Schema
             throw new RuntimeException('Schemas has to be instance of: ' . openAPISchema::class);
         }
 
-        $className                                               = Utils::className($className);
-        $this->splHash[spl_object_hash($schema)]                 = $className;
-        $this->json[json_encode($schema->getSerializableData())] = $className;
+        $className                                    = Utils::className($className);
+        $this->splHash[spl_object_hash($schema)]      = $className;
+        $this->json[$this->encodeSchemaData($schema)] = $className;
     }
 
     /** @throws JsonException */
@@ -67,7 +70,7 @@ final class Schema
             return $this->splHash[$hash];
         }
 
-        $json = json_encode($schema->getSerializableData());
+        $json = $this->encodeSchemaData($schema);
         if (! $this->allowDuplicatedSchemas && array_key_exists($json, $this->json)) {
             return $this->json[$json];
         }
@@ -92,8 +95,8 @@ final class Schema
 
         $suffix = 'a';
         while (array_key_exists($className, $this->unknownSchemas)) {
-            /** @psalm-suppress StringIncrement */
-            $className = Utils::fixKeyword($fallbackName . strtoupper($suffix++));
+            $suffix    = str_increment($suffix);
+            $className = Utils::fixKeyword($fallbackName . strtoupper($suffix));
         }
 
         $this->splHash[spl_object_hash($schema)] = $className;
@@ -125,5 +128,16 @@ final class Schema
         }
 
         yield from $this->aliasses[$classname];
+    }
+
+    /** @throws JsonException */
+    private function encodeSchemaData(openAPISchema $schema): string
+    {
+        $json = json_encode($schema->getSerializableData());
+        if (! is_string($json)) {
+            throw JsonException::createFromPhpError();
+        }
+
+        return $json;
     }
 }

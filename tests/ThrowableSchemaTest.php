@@ -5,20 +5,34 @@ declare(strict_types=1);
 namespace OpenAPITools\Tests\Registry;
 
 use OpenAPITools\Registry\ThrowableSchema;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use RuntimeException;
 use Throwable;
 use WyriHaximus\TestUtilities\TestCase;
 
 final class ThrowableSchemaTest extends TestCase
 {
-    /** @test */
-    public function has(): void
+    /** @return iterable<string, array{class-string}> */
+    public static function throwableClassProvider(): iterable
     {
-        $ts = new ThrowableSchema();
+        yield 'throwable' => [Throwable::class];
 
-        self::assertFalse($ts->has(Throwable::class));
+        yield 'exception' => [Throwable::class];
 
-        $ts->add(Throwable::class);
+        yield 'runtime exception' => [RuntimeException::class];
+    }
 
-        self::assertTrue($ts->has(Throwable::class));
+    #[Test]
+    #[DataProvider('throwableClassProvider')]
+    public function has(string $class): void
+    {
+        $throwableSchema = new ThrowableSchema();
+
+        self::assertFalse($throwableSchema->has($class));
+
+        $throwableSchema->add($class);
+
+        self::assertTrue($throwableSchema->has($class));
     }
 }
