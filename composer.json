@@ -1,49 +1,57 @@
 {
-    "name": "openapi-tools/registry",
-    "description": "Class Registries for OpenAPI Tools",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Cees-Jan Kiewiet",
-            "email": "ceesjank@gmail.com"
-        }
-    ],
-    "require": {
-        "php": "^8.2",
-        "devizzent/cebe-php-openapi": "^1",
-        "openapi-tools/representation": "dev-main",
-        "openapi-tools/utils": "dev-main"
-    },
-    "require-dev": {
-        "wyrihaximus/test-utilities": "^5.6"
-    },
-    "autoload": {
-        "psr-4": {
-            "OpenAPITools\\Registry\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "OpenAPITools\\Tests\\Registry\\": "tests/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "ergebnis/composer-normalize": true,
-            "infection/extension-installer": true,
-            "wyrihaximus/composer-update-bin-autoload-path": true
-        },
-        "platform": {
-            "php": "8.2.13"
-        }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "composer normalize"
-        ],
-        "post-update-cmd": [
-            "composer normalize"
-        ]
+  "name": "openapi-tools/registry",
+  "description": "Class Registries for OpenAPI Tools",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cees-Jan Kiewiet",
+      "email": "ceesjank@gmail.com"
     }
+  ],
+  "require": {
+    "php": "^8.4",
+    "ext-json": "^8.4",
+    "devizzent/cebe-php-openapi": "^1",
+    "openapi-tools/utils": "dev-main"
+  },
+  "require-dev": {
+    "wyrihaximus/makefiles": "^0.13.3",
+    "wyrihaximus/test-utilities": "^13.5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenAPITools\\Registry\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OpenAPITools\\Tests\\Registry\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "drupol/composer-packages": true,
+      "ergebnis/composer-normalize": true,
+      "icanhazstring/composer-unused": true,
+      "infection/extension-installer": true,
+      "mindplay/composer-locator": true,
+      "phpstan/extension-installer": true,
+      "wyrihaximus/composer-update-bin-autoload-path": true,
+      "wyrihaximus/makefiles": true,
+      "wyrihaximus/test-utilities": true
+    },
+    "platform": {
+      "php": "8.4.13"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "make on-install-or-update || true"
+    ],
+    "post-update-cmd": [
+      "make on-install-or-update || true"
+    ]
+  }
 }

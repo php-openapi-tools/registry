@@ -6,6 +6,7 @@ namespace OpenAPITools\Registry;
 
 use function in_array;
 
+/** @api */
 final class ThrowableSchema
 {
     /** @var array<string> */

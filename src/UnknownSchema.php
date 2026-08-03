@@ -6,6 +6,7 @@ namespace OpenAPITools\Registry;
 
 use cebe\openapi\spec\Schema as openAPISchema;
 
+/** @api */
 final readonly class UnknownSchema
 {
     public function __construct(

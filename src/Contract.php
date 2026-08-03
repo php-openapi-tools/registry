@@ -7,13 +7,14 @@ namespace OpenAPITools\Registry;
 use cebe\openapi\spec\Schema as openAPISchema;
 use OpenAPITools\Utils\Utils;
 use RuntimeException;
-use Safe\Exceptions\JsonException;
 
 use function array_key_exists;
 use function count;
 use function spl_object_hash;
+use function str_increment;
 use function strtoupper;
 
+/** @api */
 final class Contract
 {
     /** @var array<string, string> */
@@ -22,7 +23,6 @@ final class Contract
     /** @var array<string, UnknownSchema> */
     private array $unknownSchemas = [];
 
-    /** @throws JsonException */
     public function get(openAPISchema $schema, string $fallbackName): string
     {
         if ($schema->type === 'array') {
@@ -42,8 +42,8 @@ final class Contract
 
         $suffix = 'a';
         while (array_key_exists($className, $this->unknownSchemas)) {
-            /** @psalm-suppress StringIncrement */
-            $className = Utils::fixKeyword($fallbackName . strtoupper($suffix++));
+            $suffix    = str_increment($suffix);
+            $className = Utils::fixKeyword($fallbackName . strtoupper($suffix));
         }
 
         $this->splHash[spl_object_hash($schema)] = $className;
