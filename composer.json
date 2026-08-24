@@ -12,7 +12,7 @@
     "php": "^8.4",
     "ext-json": "^8.4",
     "devizzent/cebe-php-openapi": "^1",
-    "openapi-tools/utils": "dev-main"
+    "openapi-tools/utils": "^0.1.0"
   },
   "require-dev": {
     "wyrihaximus/makefiles": "^0.13.3",

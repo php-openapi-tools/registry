@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc5320a24d3594af7903f8302e5a4d40",
+    "content-hash": "9cd94b40cb157df823260f3f43751d3f",
     "packages": [
         {
             "name": "devizzent/cebe-php-openapi",
@@ -361,16 +361,16 @@
         },
         {
             "name": "openapi-tools/utils",
-            "version": "dev-main",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-openapi-tools/utils.git",
-                "reference": "e73e56b1951408d7c25269a312bceeac0f8d8a17"
+                "reference": "4319f0ab40b73e2a19c382e1e7b0c428b834f9f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-openapi-tools/utils/zipball/e73e56b1951408d7c25269a312bceeac0f8d8a17",
-                "reference": "e73e56b1951408d7c25269a312bceeac0f8d8a17",
+                "url": "https://api.github.com/repos/php-openapi-tools/utils/zipball/4319f0ab40b73e2a19c382e1e7b0c428b834f9f1",
+                "reference": "4319f0ab40b73e2a19c382e1e7b0c428b834f9f1",
                 "shasum": ""
             },
             "require": {
@@ -383,7 +383,6 @@
                 "wyrihaximus/async-test-utilities": "^13.5.0",
                 "wyrihaximus/makefiles": "^0.13.3"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -403,7 +402,7 @@
             "description": "Utils for OpenAPI Tools",
             "support": {
                 "issues": "https://github.com/php-openapi-tools/utils/issues",
-                "source": "https://github.com/php-openapi-tools/utils/tree/main"
+                "source": "https://github.com/php-openapi-tools/utils/tree/0.1.0"
             },
             "funding": [
                 {
@@ -411,7 +410,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-03T14:47:34+00:00"
+            "time": "2026-08-24T05:41:26+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -9764,9 +9763,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "openapi-tools/utils": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
