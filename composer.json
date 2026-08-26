@@ -15,8 +15,8 @@
     "openapi-tools/utils": "^0.1.0"
   },
   "require-dev": {
-    "wyrihaximus/makefiles": "^0.13.3",
-    "wyrihaximus/test-utilities": "^13.5.1"
+    "wyrihaximus/makefiles": "^0.14.6",
+    "wyrihaximus/test-utilities": "^13.5.2"
   },
   "autoload": {
     "psr-4": {
