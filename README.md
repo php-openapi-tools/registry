@@ -1,4 +1,5 @@
 # registry
+<!-- cspell:ignore cebe -->
 
 Class registries for [OpenAPI Tools](https://github.com/php-openapi-tools) code generators. Maps `cebe/php-openapi` schema objects to stable PHP class names while gathering an OpenAPI spec, tracks inline contract shapes, and records schemas used as error responses.
 
@@ -90,13 +91,13 @@ iterator_to_array($registry->aliasesForClassName('Schema\\ExistingClass'));
 // ['Schema\\NewFallback']
 ```
 
-When duplicates are allowed but aliases are disabled, each occurrence gets its own class name with no alias mapping.
+When duplicates are allowed but aliases are turned off, each occurrence gets its own class name with no alias mapping.
 
 When the fallback name is already taken by another unknown schema, the registry appends an incrementing suffix (`Foo`, `FooB`, `FooC`, …).
 
 ### Contract registry
 
-The contract registry assigns class names to inline object schemas used as contracts (nested shapes embedded in a parent schema). It does not deduplicate by JSON content—only by object identity and fallback name collision:
+The contract registry assigns class names to inline object schemas used as contracts (nested shapes embedded in a parent schema). It does not deduplicate by JSON content; it uses only object identity and fallback name collision:
 
 ```php
 use cebe\openapi\spec\Schema as OpenApiSchema;
