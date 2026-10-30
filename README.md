@@ -1,4 +1,5 @@
 # registry
+<!-- cspell:ignore cebe -->
 
 Class registries for [OpenAPI Tools](https://github.com/php-openapi-tools) code generators. Maps `cebe/php-openapi` schema objects to stable PHP class names while gathering an OpenAPI spec, tracks inline contract shapes, and records schemas used as error responses.
 
